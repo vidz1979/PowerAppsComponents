@@ -3,7 +3,7 @@ MaskedInput As CanvasComponent:
     Fill: =RGBA(0, 0, 0, 0)
     Height: =70
     Mask: =""
-    OnReset: =Set(StrInput, ""); Reset(TextInput1);
+    OnReset: =Set(StrInput, Parent.Default); Reset(TextInput1);
     Text: =StrInput
     Width: =320
     X: =0
@@ -11,10 +11,12 @@ MaskedInput As CanvasComponent:
     ZIndex: =1
 
     TextInput1 As text:
-        Default: =Parent.Default
-        Height: =Parent.Height
+        Default: =If(IsBlank(StrInput), Parent.Default, StrInput)
+        Height: =Parent.Height - 2
         Size: =21
-        Width: =Parent.Width
+        Width: =Parent.Width - 2
+        X: =1
+        Y: =1
         ZIndex: =1
 
     Slider1 As slider:

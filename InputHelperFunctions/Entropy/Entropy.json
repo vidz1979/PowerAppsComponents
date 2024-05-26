@@ -2,7 +2,8 @@
   "ComponentIndexes": {
     "InputHelperFunctions": 1,
     "InputHelpers1": 1,
-    "MaskedInput": 2
+    "MaskedInput": 2,
+    "MaskedInput_1": 2
   },
   "ControlUniqueGuids": {},
   "ControlUniqueIds": {
@@ -26,6 +27,7 @@
     "LabelErroCNPJ": 10,
     "LabelErroCPF": 14,
     "MaskedInput": 25,
+    "MaskedInput_1": 28,
     "Screen1": 5,
     "Slider1": 27,
     "SliderCNPJ": 11,
@@ -35,7 +37,7 @@
   },
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
-  "HeaderLastSavedDateTimeUTC": "05/26/2024 19:07:52",
+  "HeaderLastSavedDateTimeUTC": "05/26/2024 19:21:14",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {},
   "LocalDatabaseReferencesAsEmpty": true,
@@ -98,6 +100,7 @@
     "LabelErroCNPJ": {},
     "LabelErroCPF": {},
     "MaskedInput": {},
+    "MaskedInput_1": {},
     "Screen1": {},
     "Slider1": {},
     "SliderCNPJ": {},
@@ -109,7 +112,7 @@
   "PCFTemplateEntry": {},
   "PublishOrderIndices": {
     "App": 0,
-    "Button2": 18,
+    "Button2": 19,
     "GroupCNPJ": 3,
     "GroupCPF": 8,
     "GroupTelefone": 13,
@@ -122,18 +125,19 @@
     "Label2": 7,
     "Label2_1": 12,
     "Label2_2": 2,
-    "Label3": 16,
-    "Label3_1": 17,
+    "Label3": 17,
+    "Label3_1": 18,
     "Label3_2": 1,
     "LabelErroCNPJ": 5,
     "LabelErroCPF": 10,
     "MaskedInput": 0,
+    "MaskedInput_1": 16,
     "Screen1": 0,
     "Slider1": 20,
     "SliderCNPJ": 6,
     "SliderCPF": 11,
     "SliderTelefone": 15,
-    "TextInput1": 19
+    "TextInput1": 21
   },
   "ResourcesJsonIndices": {},
   "RuleScreenIdWithoutScreen": {},
@@ -141,6 +145,7 @@
   "VolatileProperties": {
     "AnalysisLoadTime": 0.2352599,
     "ControlCount": {
+      "1a9cacb2663f4e2e85b28d2e483eb95c": 1,
       "9537d784898b4faba3170dd2a5039db2": 2,
       "button": 1,
       "group": 3,

@@ -255,7 +255,7 @@ Screen1 As screen:
 
     Button2 As button:
         Height: =70
-        OnSelect: |
+        OnSelect: |-
             =Set(MostraValidacaoCNPJ, false);
             Set(MostraValidacaoCPF, false);
             Set(StrCNPJ, "");
@@ -264,6 +264,7 @@ Screen1 As screen:
             Reset(InputCNPJ);
             Reset(InputCPF);
             Reset(InputTelefone);
+            Reset(MaskedInput_1);
         Size: =24
         Text: ="Limpar"
         Width: =560
@@ -356,4 +357,12 @@ Screen1 As screen:
         Text: ="Funções de Validação e Máscara"
         Width: =640
         ZIndex: =19
+
+    MaskedInput_1 As MaskedInput:
+        Height: =72
+        Mask: ="00000-000"
+        Width: =560
+        X: =40
+        Y: =698
+        ZIndex: =20
 
