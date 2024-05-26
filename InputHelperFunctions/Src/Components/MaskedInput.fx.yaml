@@ -1,8 +1,12 @@
 MaskedInput As CanvasComponent:
+    MaskFunction(ParamInput As String):
+        ParamInput:
+            Default: ="Texto"
+        ThisProperty:
+            Default: =ParamInput
     Default: =""
     Fill: =RGBA(0, 0, 0, 0)
     Height: =70
-    Mask: =""
     OnReset: =Set(StrInput, Parent.Default); Reset(TextInput1);
     Text: =StrInput
     Width: =320
@@ -22,7 +26,7 @@ MaskedInput As CanvasComponent:
     Slider1 As slider:
         Default: =Len(TextInput1.Text)
         Height: =70
-        OnChange: =Set(StrInput, TextInput1.Text); Reset(TextInput1);
+        OnChange: =Set(StrInput, Parent.MaskFunction(TextInput1.Text)); Reset(TextInput1);
         Visible: =false
         Width: =560
         X: =40

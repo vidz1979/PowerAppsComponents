@@ -3651,14 +3651,6 @@
         {
           "AFDDataSourceName": "",
           "AutoRuleBindingEnabled": false,
-          "AutoRuleBindingString": "",
-          "InvariantPropertyName": "Mask",
-          "IsLockable": false,
-          "NameMapSourceSchema": "?"
-        },
-        {
-          "AFDDataSourceName": "",
-          "AutoRuleBindingEnabled": false,
           "AutoRuleBindingString": "\"Texto\"",
           "InvariantPropertyName": "Text",
           "IsLockable": false,
@@ -3677,6 +3669,15 @@
           "AutoRuleBindingEnabled": false,
           "AutoRuleBindingString": "",
           "InvariantPropertyName": "OnReset",
+          "IsLockable": false,
+          "NameMapSourceSchema": "?"
+        },
+        "MaskFunction_ParamInput",
+        {
+          "AFDDataSourceName": "",
+          "AutoRuleBindingEnabled": false,
+          "AutoRuleBindingString": "ParamInput",
+          "InvariantPropertyName": "MaskFunction",
           "IsLockable": false,
           "NameMapSourceSchema": "?"
         }
@@ -3702,11 +3703,6 @@
       "Properties": [
         {
           "Category": "Data",
-          "PropertyName": "Mask",
-          "RuleProviderType": "Unknown"
-        },
-        {
-          "Category": "Data",
           "PropertyName": "Text",
           "RuleProviderType": "System"
         },
@@ -3714,6 +3710,16 @@
           "Category": "Data",
           "PropertyName": "Default",
           "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "MaskFunction_ParamInput",
+          "RuleProviderType": "System"
+        },
+        {
+          "Category": "Data",
+          "PropertyName": "MaskFunction",
+          "RuleProviderType": "User"
         },
         {
           "Category": "Design",

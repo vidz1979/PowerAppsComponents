@@ -58,7 +58,7 @@
         "NameMapSourceSchema": "?"
       }
     ],
-    "LastModifiedTimestamp": "638523466469624231",
+    "LastModifiedTimestamp": "638523492333169003",
     "Name": "InputHelperFunctions",
     "Rules": [
       {
@@ -182,7 +182,7 @@
       "Name": "ApplyMask",
       "PropertyDataTypeKey": "String",
       "PropertyScopeKey": {
-        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRuleNamespaceKey": "7",
         "PropertyScopeRulesKey": [
           {
             "DisplayName": "ApplyMask_ParamInput",
@@ -226,7 +226,7 @@
       "Name": "FormataCPF",
       "PropertyDataTypeKey": "String",
       "PropertyScopeKey": {
-        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRuleNamespaceKey": "7",
         "PropertyScopeRulesKey": [
           {
             "DisplayName": "FormataCPF_ParamInput",
@@ -255,7 +255,7 @@
       "Name": "ValidaCPF",
       "PropertyDataTypeKey": "Boolean",
       "PropertyScopeKey": {
-        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRuleNamespaceKey": "7",
         "PropertyScopeRulesKey": [
           {
             "DisplayName": "ValidaCPF_ParamCPF",
@@ -284,7 +284,7 @@
       "Name": "ValidaCNPJ",
       "PropertyDataTypeKey": "Boolean",
       "PropertyScopeKey": {
-        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRuleNamespaceKey": "7",
         "PropertyScopeRulesKey": [
           {
             "DisplayName": "ValidaCNPJ_ParamCNPJ",
@@ -313,7 +313,7 @@
       "Name": "FormataCNPJ",
       "PropertyDataTypeKey": "String",
       "PropertyScopeKey": {
-        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRuleNamespaceKey": "7",
         "PropertyScopeRulesKey": [
           {
             "DisplayName": "FormataCNPJ_ParamInput",
@@ -344,7 +344,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638523466469624231",
+  "LastModifiedTimestamp": "638523492333169003",
   "Name": "9537d784898b4faba3170dd2a5039db2",
   "OverridableProperties": {},
   "Version": "1.0"

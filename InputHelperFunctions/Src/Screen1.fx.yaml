@@ -360,7 +360,7 @@ Screen1 As screen:
 
     MaskedInput_1 As MaskedInput:
         Height: =72
-        Mask: ="00000-000"
+        MaskFunction: =InputHelpers1.ApplyMask(ParamInput, "00000-000")
         Width: =560
         X: =40
         Y: =698
