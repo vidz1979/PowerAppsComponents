@@ -1,0 +1,351 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": true,
+  "ComponentDefinitionInfo": {
+    "AllowAccessToGlobals": false,
+    "Children": [],
+    "ControlPropertyState": [
+      "Fill",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "",
+        "InvariantPropertyName": "Height",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "",
+        "InvariantPropertyName": "Width",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
+      "X",
+      "Y",
+      "ZIndex",
+      "ApplyMask_ParamMask",
+      "ApplyMask_ParamInput",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "\"Texto\"",
+        "InvariantPropertyName": "ApplyMask",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
+      "FormataCPF",
+      "FormataCPF_ParamInput",
+      "ValidaCPF",
+      "ValidaCPF_ParamCPF",
+      "ValidaCNPJ_ParamCNPJ",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "true",
+        "InvariantPropertyName": "ValidaCNPJ",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      },
+      "FormataCNPJ_ParamInput",
+      {
+        "AFDDataSourceName": "",
+        "AutoRuleBindingEnabled": false,
+        "AutoRuleBindingString": "\"Texto\"",
+        "InvariantPropertyName": "FormataCNPJ",
+        "IsLockable": false,
+        "NameMapSourceSchema": "?"
+      }
+    ],
+    "LastModifiedTimestamp": "638523185195762635",
+    "Name": "InputHelperFunctions",
+    "Rules": [
+      {
+        "Category": "Data",
+        "InvariantScript": "With(\n    {\n        // starts with an masked empty result\n        strResult: Substitute(ParamMask, \"0\", \" \"),\n        // extract only digits from input\n        strInputDigits: Concat(MatchAll(ParamInput, \"\\d\"), FullMatch),\n        // find all digits groups from mask, ex: 000-0000-00000 --> ['000', '0000', '00000']\n        arrMatches: MatchAll(ParamMask, \"\\d+\")\n    },\n    TrimEnds(Concat(\n        ForAll(\n            // for each group\n            Sequence(CountRows(arrMatches)),\n            With(\n                {\n                    // current group\n                    objCurrMatch: Index(arrMatches, Value),\n                    // which position of \"only digits input\" is the current group\n                    intOnlyDigitsPosition: Len(\n                        Concat(\n                            ForAll(\n                                Sequence(Value - 1),\n                                Index(arrMatches, Value).FullMatch\n                            ), \n                            Value\n                        )\n                    ) + 1,\n                    // last position put in result (without mask characters)\n                    intLastPosition: If(\n                        Value > 1,\n                        Index(arrMatches, Value - 1).StartMatch + Len(Index(arrMatches, Value - 1).FullMatch), \n                        1\n                    )\n                },\n                If(\n                    // if input is complete until current group, replace in result using mask\n                    intOnlyDigitsPosition <= Len(strInputDigits),\n                    Mid(\n                        Replace(\n                            // replace the current group in mask\n                            strResult,\n                            objCurrMatch.StartMatch,\n                            Len(objCurrMatch.FullMatch),\n                            Mid(\n                                strInputDigits, \n                                intOnlyDigitsPosition, \n                                Len(objCurrMatch.FullMatch)\n                            ) & \"                  \"\n                        ),\n                        intLastPosition,\n                        objCurrMatch.StartMatch - intLastPosition + Len(objCurrMatch.FullMatch)\n                    ),\n                    // if input is not complete, do not output the mask extra characters\n                    \"\"\n                )\n            )\n        ),\n        Value\n    ))\n)\n",
+        "Property": "ApplyMask",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "\"Texto\"",
+        "Property": "ApplyMask_ParamInput",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "\"Texto\"",
+        "Property": "ApplyMask_ParamMask",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "\"Texto\"",
+        "Property": "FormataCPF_ParamInput",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "Self.ApplyMask(ParamInput, \"000.000.000-00\")",
+        "Property": "FormataCPF",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "With(\n    {\n        // extrai somente numeros do input\n        strDigits: Concat(MatchAll(ParamCPF, \"\\d\"), FullMatch)    \n    },\n    With(\n        {\n            // calcula 1o digito do CPF\n            intDigito1_0: Mod(\n                (Mid(strDigits, 1, 1) * 10 \n                + Mid(strDigits, 2, 1) * 9 \n                + Mid(strDigits, 3, 1) * 8 \n                + Mid(strDigits, 4, 1) * 7 \n                + Mid(strDigits, 5, 1) * 6 \n                + Mid(strDigits, 6, 1) * 5 \n                + Mid(strDigits, 7, 1) * 4 \n                + Mid(strDigits, 8, 1) * 3 \n                + Mid(strDigits, 9, 1) * 2) * 10, \n                11\n            ),\n            // calcula 2o digito do CPF\n            intDigito2_0: Mod(\n                (Mid(strDigits, 1, 1) * 11 \n                + Mid(strDigits, 2, 1) * 10 \n                + Mid(strDigits, 3, 1) * 9 \n                + Mid(strDigits, 4, 1) * 8 \n                + Mid(strDigits, 5, 1) * 7 \n                + Mid(strDigits, 6, 1) * 6 \n                + Mid(strDigits, 7, 1) * 5 \n                + Mid(strDigits, 8, 1) * 4 \n                + Mid(strDigits, 9, 1) * 3 \n                + Mid(strDigits, 10, 1) * 2) * 10, \n                11\n            )\n        },\n        With(\n            {\n                intDigito1: If(intDigito1_0 = 10, 0, intDigito1_0),\n                intDigito2: If(intDigito2_0 = 10, 0, intDigito2_0)\n            },\n            Len(strDigits) = 11\n                And intDigito1 = Value(Mid(strDigits, 10, 1)) \n                And intDigito2 = Value(Mid(strDigits, 11, 1))\n        )\n    )\n)",
+        "Property": "ValidaCPF",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "\"Texto\"",
+        "Property": "ValidaCPF_ParamCPF",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "\"Texto\"",
+        "Property": "ValidaCNPJ_ParamCNPJ",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "With(\n    {\n        // extrai somente numeros do input\n        strDigits: Concat(MatchAll(ParamCNPJ, \"\\d\"), FullMatch)    \n    },\n    With(\n        {\n            // calcula 1o digito do CNPJ\n            intDigito1_0: Mod(\n                Mid(strDigits, 1, 1) * 5 \n                + Mid(strDigits, 2, 1) * 4 \n                + Mid(strDigits, 3, 1) * 3 \n                + Mid(strDigits, 4, 1) * 2 \n                + Mid(strDigits, 5, 1) * 9 \n                + Mid(strDigits, 6, 1) * 8 \n                + Mid(strDigits, 7, 1) * 7 \n                + Mid(strDigits, 8, 1) * 6 \n                + Mid(strDigits, 9, 1) * 5 \n                + Mid(strDigits, 10, 1) * 4 \n                + Mid(strDigits, 11, 1) * 3 \n                + Mid(strDigits, 12, 1) * 2, \n                11\n            ),\n            // calcula 2o digito do CNPJ\n            intDigito2_0: Mod(\n                Mid(strDigits, 1, 1) * 6 \n                + Mid(strDigits, 2, 1) * 5 \n                + Mid(strDigits, 3, 1) * 4 \n                + Mid(strDigits, 4, 1) * 3 \n                + Mid(strDigits, 5, 1) * 2 \n                + Mid(strDigits, 6, 1) * 9 \n                + Mid(strDigits, 7, 1) * 8 \n                + Mid(strDigits, 8, 1) * 7 \n                + Mid(strDigits, 9, 1) * 6 \n                + Mid(strDigits, 10, 1) * 5 \n                + Mid(strDigits, 11, 1) * 4 \n                + Mid(strDigits, 12, 1) * 3 \n                + Mid(strDigits, 13, 1) * 2, \n                11\n            )\n        },\n        With(\n            {\n                intDigito1: If(intDigito1_0 < 2, 0, 11 - intDigito1_0),\n                intDigito2: If(intDigito2_0 < 2, 0, 11 - intDigito2_0)\n            },\n            Len(strDigits) = 14\n                And intDigito1 = Value(Mid(strDigits, 13, 1)) \n                And intDigito2 = Value(Mid(strDigits, 14, 1))\n        )\n    )\n)",
+        "Property": "ValidaCNPJ",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "\"Texto\"",
+        "Property": "FormataCNPJ_ParamInput",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Data",
+        "InvariantScript": "Self.ApplyMask(ParamInput, \"00.000.000/0000-00\")",
+        "Property": "FormataCNPJ",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Design",
+        "InvariantScript": "RGBA(0, 0, 0, 0)",
+        "Property": "Fill",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Design",
+        "InvariantScript": "0",
+        "Property": "Height",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Design",
+        "InvariantScript": "0",
+        "Property": "Width",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Design",
+        "InvariantScript": "0",
+        "Property": "X",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Design",
+        "InvariantScript": "0",
+        "Property": "Y",
+        "RuleProviderType": "System"
+      },
+      {
+        "Category": "Design",
+        "InvariantScript": "1",
+        "Property": "ZIndex",
+        "RuleProviderType": "System"
+      }
+    ]
+  },
+  "ComponentManifest": {
+    "AllowAccessToGlobals": false,
+    "AllowCustomization": true,
+    "Description": "",
+    "Name": "InputHelperFunctions",
+    "TemplateGuid": "9537d784898b4faba3170dd2a5039db2"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [
+    {
+      "Category": 0,
+      "DisplayName": "ApplyMask",
+      "Hidden": true,
+      "Name": "ApplyMask",
+      "PropertyDataTypeKey": "String",
+      "PropertyScopeKey": {
+        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRulesKey": [
+          {
+            "DisplayName": "ApplyMask_ParamInput",
+            "Name": "ApplyMask_ParamInput",
+            "PropertyDataTypeKey": "String",
+            "ScopeVariableInfo": {
+              "DependencyType": "New",
+              "Description": "O valor de entrada",
+              "IsRequired": true,
+              "ResolveExpands": false,
+              "ResolveSelects": false,
+              "ScopeVariableName": "ParamInput"
+            },
+            "Tooltip": "O valor de entrada",
+            "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+          },
+          {
+            "DisplayName": "ApplyMask_ParamMask",
+            "Name": "ApplyMask_ParamMask",
+            "PropertyDataTypeKey": "String",
+            "ScopeVariableInfo": {
+              "DependencyType": "New",
+              "Description": "A máscara a ser aplicada",
+              "IsRequired": true,
+              "ResolveExpands": false,
+              "ResolveSelects": false,
+              "ScopeVariableName": "ParamMask"
+            },
+            "Tooltip": "A máscara a ser aplicada",
+            "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+          }
+        ]
+      },
+      "Tooltip": "Aplica máscara a uma entrada",
+      "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "FormataCPF",
+      "Hidden": true,
+      "Name": "FormataCPF",
+      "PropertyDataTypeKey": "String",
+      "PropertyScopeKey": {
+        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRulesKey": [
+          {
+            "DisplayName": "FormataCPF_ParamInput",
+            "Name": "FormataCPF_ParamInput",
+            "PropertyDataTypeKey": "String",
+            "ScopeVariableInfo": {
+              "DependencyType": "New",
+              "Description": "Valor de entrada",
+              "IsRequired": true,
+              "ResolveExpands": false,
+              "ResolveSelects": false,
+              "ScopeVariableName": "ParamInput"
+            },
+            "Tooltip": "Valor de entrada",
+            "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+          }
+        ]
+      },
+      "Tooltip": "Formata valor como um CPF",
+      "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "ValidaCPF",
+      "Hidden": true,
+      "Name": "ValidaCPF",
+      "PropertyDataTypeKey": "Boolean",
+      "PropertyScopeKey": {
+        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRulesKey": [
+          {
+            "DisplayName": "ValidaCPF_ParamCPF",
+            "Name": "ValidaCPF_ParamCPF",
+            "PropertyDataTypeKey": "String",
+            "ScopeVariableInfo": {
+              "DependencyType": "New",
+              "Description": "CPF a ser validado",
+              "IsRequired": true,
+              "ResolveExpands": false,
+              "ResolveSelects": false,
+              "ScopeVariableName": "ParamCPF"
+            },
+            "Tooltip": "CPF a ser validado",
+            "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+          }
+        ]
+      },
+      "Tooltip": "Determina se CPF é válido ou não",
+      "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "ValidaCNPJ",
+      "Hidden": true,
+      "Name": "ValidaCNPJ",
+      "PropertyDataTypeKey": "Boolean",
+      "PropertyScopeKey": {
+        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRulesKey": [
+          {
+            "DisplayName": "ValidaCNPJ_ParamCNPJ",
+            "Name": "ValidaCNPJ_ParamCNPJ",
+            "PropertyDataTypeKey": "String",
+            "ScopeVariableInfo": {
+              "DependencyType": "New",
+              "Description": "CNPJ a ser validado",
+              "IsRequired": true,
+              "ResolveExpands": false,
+              "ResolveSelects": false,
+              "ScopeVariableName": "ParamCNPJ"
+            },
+            "Tooltip": "CNPJ a ser validado",
+            "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+          }
+        ]
+      },
+      "Tooltip": "Determina se CNPJ é válido ou não",
+      "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"Boolean\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "FormataCNPJ",
+      "Hidden": true,
+      "Name": "FormataCNPJ",
+      "PropertyDataTypeKey": "String",
+      "PropertyScopeKey": {
+        "PropertyScopeRuleNamespaceKey": "4",
+        "PropertyScopeRulesKey": [
+          {
+            "DisplayName": "FormataCNPJ_ParamInput",
+            "Name": "FormataCNPJ_ParamInput",
+            "PropertyDataTypeKey": "String",
+            "ScopeVariableInfo": {
+              "DependencyType": "New",
+              "Description": "Valor a ser formatado",
+              "IsRequired": true,
+              "ResolveExpands": false,
+              "ResolveSelects": false,
+              "ScopeVariableName": "ParamInput"
+            },
+            "Tooltip": "Valor a ser formatado",
+            "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+          }
+        ]
+      },
+      "Tooltip": "Formata valor como um CNPJ",
+      "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    }
+  ],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": false,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "IsPcfControl": false,
+  "IsPremiumPcfControl": false,
+  "IsWidgetTemplate": false,
+  "LastModifiedTimestamp": "638523185195762635",
+  "Name": "9537d784898b4faba3170dd2a5039db2",
+  "OverridableProperties": {},
+  "Version": "1.0"
+}

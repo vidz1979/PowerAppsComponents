@@ -1,0 +1,142 @@
+{
+  "ComponentIndexes": {
+    "InputHelperFunctions": 1,
+    "InputHelpers1": 1
+  },
+  "ControlUniqueGuids": {},
+  "ControlUniqueIds": {
+    "App": 1,
+    "Button2": 29,
+    "GroupCNPJ": 28,
+    "GroupCPF": 23,
+    "GroupTelefone": 21,
+    "Host": 3,
+    "InputCNPJ": 26,
+    "InputCPF": 10,
+    "InputHelperFunctions": 4,
+    "InputHelpers1": 6,
+    "InputTelefone": 19,
+    "Label2": 12,
+    "Label2_1": 20,
+    "Label2_2": 27,
+    "Label3": 30,
+    "Label3_1": 31,
+    "Label3_2": 32,
+    "LabelErroCNPJ": 24,
+    "LabelErroCPF": 22,
+    "Screen1": 5,
+    "SliderCNPJ": 25,
+    "SliderCPF": 11,
+    "SliderTelefone": 18
+  },
+  "FunctionParamsInvariantScripts": {},
+  "FunctionParamsInvariantScriptsOnInstances": {},
+  "HeaderLastSavedDateTimeUTC": "05/26/2024 11:30:53",
+  "IsLegacyComponentAllowGlobalScopeCase": false,
+  "LocalConnectionIDReferences": {},
+  "LocalDatabaseReferencesAsEmpty": true,
+  "LocalResourceFileNames": {},
+  "LocalResourceRootPaths": {},
+  "OrderComponentMetadata": {
+    "9537d784898b4faba3170dd2a5039db2": 0
+  },
+  "OrderComponentTemplate": {
+    "9537d784898b4faba3170dd2a5039db2": 0
+  },
+  "OrderDataSource": {},
+  "OrderGroupControls": {
+    "GroupCNPJ": {
+      "InputCNPJ": 2,
+      "Label2_2": 3,
+      "LabelErroCNPJ": 0,
+      "SliderCNPJ": 1
+    },
+    "GroupCPF": {
+      "InputCPF": 2,
+      "Label2": 3,
+      "LabelErroCPF": 0,
+      "SliderCPF": 1
+    },
+    "GroupTelefone": {
+      "InputTelefone": 1,
+      "Label2_1": 2,
+      "SliderTelefone": 0
+    }
+  },
+  "OrderPcfTemplate": {},
+  "OrderTemplate": {},
+  "OrderXMLTemplate": {
+    "button": 3,
+    "label": 0,
+    "slider": 2,
+    "text": 1
+  },
+  "OverridablePropertiesEntry": {
+    "App": {},
+    "Button2": {},
+    "GroupCNPJ": {},
+    "GroupCPF": {},
+    "GroupTelefone": {},
+    "Host": {},
+    "InputCNPJ": {},
+    "InputCPF": {},
+    "InputHelperFunctions": {},
+    "InputHelpers1": {},
+    "InputTelefone": {},
+    "Label2": {},
+    "Label2_1": {},
+    "Label2_2": {},
+    "Label3": {},
+    "Label3_1": {},
+    "Label3_2": {},
+    "LabelErroCNPJ": {},
+    "LabelErroCPF": {},
+    "Screen1": {},
+    "SliderCNPJ": {},
+    "SliderCPF": {},
+    "SliderTelefone": {}
+  },
+  "PCFDynamicSchemaForIRRetrievalEntry": {},
+  "PCFTemplateEntry": {},
+  "PublishOrderIndices": {
+    "App": 0,
+    "Button2": 18,
+    "GroupCNPJ": 3,
+    "GroupCPF": 8,
+    "GroupTelefone": 12,
+    "Host": 0,
+    "InputCNPJ": 4,
+    "InputCPF": 9,
+    "InputHelperFunctions": 0,
+    "InputHelpers1": 0,
+    "InputTelefone": 14,
+    "Label2": 7,
+    "Label2_1": 13,
+    "Label2_2": 2,
+    "Label3": 16,
+    "Label3_1": 17,
+    "Label3_2": 1,
+    "LabelErroCNPJ": 5,
+    "LabelErroCPF": 10,
+    "Screen1": 0,
+    "SliderCNPJ": 6,
+    "SliderCPF": 11,
+    "SliderTelefone": 15
+  },
+  "ResourcesJsonIndices": {},
+  "RuleScreenIdWithoutScreen": {},
+  "TemplateVersions": {},
+  "VolatileProperties": {
+    "AnalysisLoadTime": 0.1120272,
+    "ControlCount": {
+      "9537d784898b4faba3170dd2a5039db2": 2,
+      "group": 3,
+      "label": 7,
+      "screen": 1,
+      "slider": 3,
+      "text": 4
+    },
+    "DeserializationLoadTime": 0.8018595
+  },
+  "WasLocalDatabaseReferencesEmpty": true
+}

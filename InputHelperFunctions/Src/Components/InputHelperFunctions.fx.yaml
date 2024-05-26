@@ -1,0 +1,193 @@
+InputHelperFunctions As CanvasComponent:
+    ApplyMask(ParamInput As String, ParamMask As String):
+        ParamInput:
+            Default: ="Texto"
+        ParamMask:
+            Default: ="Texto"
+        ThisProperty:
+            Default: |
+                =With(
+                    {
+                        // starts with an masked empty result
+                        strResult: Substitute(ParamMask, "0", " "),
+                        // extract only digits from input
+                        strInputDigits: Concat(MatchAll(ParamInput, "\d"), FullMatch),
+                        // find all digits groups from mask, ex: 000-0000-00000 --> ['000', '0000', '00000']
+                        arrMatches: MatchAll(ParamMask, "\d+")
+                    },
+                    TrimEnds(Concat(
+                        ForAll(
+                            // for each group
+                            Sequence(CountRows(arrMatches)),
+                            With(
+                                {
+                                    // current group
+                                    objCurrMatch: Index(arrMatches, Value),
+                                    // which position of "only digits input" is the current group
+                                    intOnlyDigitsPosition: Len(
+                                        Concat(
+                                            ForAll(
+                                                Sequence(Value - 1),
+                                                Index(arrMatches, Value).FullMatch
+                                            ), 
+                                            Value
+                                        )
+                                    ) + 1,
+                                    // last position put in result (without mask characters)
+                                    intLastPosition: If(
+                                        Value > 1,
+                                        Index(arrMatches, Value - 1).StartMatch + Len(Index(arrMatches, Value - 1).FullMatch), 
+                                        1
+                                    )
+                                },
+                                If(
+                                    // if input is complete until current group, replace in result using mask
+                                    intOnlyDigitsPosition <= Len(strInputDigits),
+                                    Mid(
+                                        Replace(
+                                            // replace the current group in mask
+                                            strResult,
+                                            objCurrMatch.StartMatch,
+                                            Len(objCurrMatch.FullMatch),
+                                            Mid(
+                                                strInputDigits, 
+                                                intOnlyDigitsPosition, 
+                                                Len(objCurrMatch.FullMatch)
+                                            ) & "                  "
+                                        ),
+                                        intLastPosition,
+                                        objCurrMatch.StartMatch - intLastPosition + Len(objCurrMatch.FullMatch)
+                                    ),
+                                    // if input is not complete, do not output the mask extra characters
+                                    ""
+                                )
+                            )
+                        ),
+                        Value
+                    ))
+                )
+    FormataCNPJ(ParamInput As String):
+        ParamInput:
+            Default: ="Texto"
+        ThisProperty:
+            Default: =Self.ApplyMask(ParamInput, "00.000.000/0000-00")
+    FormataCPF(ParamInput As String):
+        ParamInput:
+            Default: ="Texto"
+        ThisProperty:
+            Default: =Self.ApplyMask(ParamInput, "000.000.000-00")
+    ValidaCNPJ(ParamCNPJ As String):
+        ParamCNPJ:
+            Default: ="Texto"
+        ThisProperty:
+            Default: |-
+                =With(
+                    {
+                        // extrai somente numeros do input
+                        strDigits: Concat(MatchAll(ParamCNPJ, "\d"), FullMatch)    
+                    },
+                    With(
+                        {
+                            // calcula 1o digito do CNPJ
+                            intDigito1_0: Mod(
+                                Mid(strDigits, 1, 1) * 5 
+                                + Mid(strDigits, 2, 1) * 4 
+                                + Mid(strDigits, 3, 1) * 3 
+                                + Mid(strDigits, 4, 1) * 2 
+                                + Mid(strDigits, 5, 1) * 9 
+                                + Mid(strDigits, 6, 1) * 8 
+                                + Mid(strDigits, 7, 1) * 7 
+                                + Mid(strDigits, 8, 1) * 6 
+                                + Mid(strDigits, 9, 1) * 5 
+                                + Mid(strDigits, 10, 1) * 4 
+                                + Mid(strDigits, 11, 1) * 3 
+                                + Mid(strDigits, 12, 1) * 2, 
+                                11
+                            ),
+                            // calcula 2o digito do CNPJ
+                            intDigito2_0: Mod(
+                                Mid(strDigits, 1, 1) * 6 
+                                + Mid(strDigits, 2, 1) * 5 
+                                + Mid(strDigits, 3, 1) * 4 
+                                + Mid(strDigits, 4, 1) * 3 
+                                + Mid(strDigits, 5, 1) * 2 
+                                + Mid(strDigits, 6, 1) * 9 
+                                + Mid(strDigits, 7, 1) * 8 
+                                + Mid(strDigits, 8, 1) * 7 
+                                + Mid(strDigits, 9, 1) * 6 
+                                + Mid(strDigits, 10, 1) * 5 
+                                + Mid(strDigits, 11, 1) * 4 
+                                + Mid(strDigits, 12, 1) * 3 
+                                + Mid(strDigits, 13, 1) * 2, 
+                                11
+                            )
+                        },
+                        With(
+                            {
+                                intDigito1: If(intDigito1_0 < 2, 0, 11 - intDigito1_0),
+                                intDigito2: If(intDigito2_0 < 2, 0, 11 - intDigito2_0)
+                            },
+                            Len(strDigits) = 14
+                                And intDigito1 = Value(Mid(strDigits, 13, 1)) 
+                                And intDigito2 = Value(Mid(strDigits, 14, 1))
+                        )
+                    )
+                )
+    ValidaCPF(ParamCPF As String):
+        ParamCPF:
+            Default: ="Texto"
+        ThisProperty:
+            Default: |-
+                =With(
+                    {
+                        // extrai somente numeros do input
+                        strDigits: Concat(MatchAll(ParamCPF, "\d"), FullMatch)    
+                    },
+                    With(
+                        {
+                            // calcula 1o digito do CPF
+                            intDigito1_0: Mod(
+                                (Mid(strDigits, 1, 1) * 10 
+                                + Mid(strDigits, 2, 1) * 9 
+                                + Mid(strDigits, 3, 1) * 8 
+                                + Mid(strDigits, 4, 1) * 7 
+                                + Mid(strDigits, 5, 1) * 6 
+                                + Mid(strDigits, 6, 1) * 5 
+                                + Mid(strDigits, 7, 1) * 4 
+                                + Mid(strDigits, 8, 1) * 3 
+                                + Mid(strDigits, 9, 1) * 2) * 10, 
+                                11
+                            ),
+                            // calcula 2o digito do CPF
+                            intDigito2_0: Mod(
+                                (Mid(strDigits, 1, 1) * 11 
+                                + Mid(strDigits, 2, 1) * 10 
+                                + Mid(strDigits, 3, 1) * 9 
+                                + Mid(strDigits, 4, 1) * 8 
+                                + Mid(strDigits, 5, 1) * 7 
+                                + Mid(strDigits, 6, 1) * 6 
+                                + Mid(strDigits, 7, 1) * 5 
+                                + Mid(strDigits, 8, 1) * 4 
+                                + Mid(strDigits, 9, 1) * 3 
+                                + Mid(strDigits, 10, 1) * 2) * 10, 
+                                11
+                            )
+                        },
+                        With(
+                            {
+                                intDigito1: If(intDigito1_0 = 10, 0, intDigito1_0),
+                                intDigito2: If(intDigito2_0 = 10, 0, intDigito2_0)
+                            },
+                            Len(strDigits) = 11
+                                And intDigito1 = Value(Mid(strDigits, 10, 1)) 
+                                And intDigito2 = Value(Mid(strDigits, 11, 1))
+                        )
+                    )
+                )
+    Fill: =RGBA(0, 0, 0, 0)
+    Height: =0
+    Width: =0
+    X: =0
+    Y: =0
+    ZIndex: =1
+
