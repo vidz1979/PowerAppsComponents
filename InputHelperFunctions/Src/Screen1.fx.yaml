@@ -329,7 +329,7 @@ Screen1 As screen:
             ="Exemplo CNPJ válido: 84.534.296/0001-10"
         Width: =560
         X: =40
-        Y: =746
+        Y: =820
         ZIndex: =17
 
     Label3_1 As label:
@@ -339,7 +339,7 @@ Screen1 As screen:
             ="Exemplo CPF válido: 608.524.797-43"
         Width: =560
         X: =40
-        Y: =816
+        Y: =890
         ZIndex: =18
 
     Label3_2 As label:

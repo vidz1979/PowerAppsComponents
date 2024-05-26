@@ -1,16 +1,17 @@
 MaskedInput As CanvasComponent:
-    Default: ="Texto"
+    Default: =""
     Fill: =RGBA(0, 0, 0, 0)
     Height: =70
-    Mask: ="Texto"
-    Text: ="Texto"
+    Mask: =""
+    OnReset: =Set(StrInput, ""); Reset(TextInput1);
+    Text: =StrInput
     Width: =320
     X: =0
     Y: =0
     ZIndex: =1
 
     TextInput1 As text:
-        Default: =Self.Default
+        Default: =Parent.Default
         Height: =Parent.Height
         Size: =21
         Width: =Parent.Width
