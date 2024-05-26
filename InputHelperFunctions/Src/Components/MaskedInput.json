@@ -1,0 +1,57 @@
+{
+  "ComponentAllowCustomization": true,
+  "ComponentChangedSinceFileImport": true,
+  "ComponentExtraMetadata": {
+    "ComponentDescription": "Recebe uma entrada de texto com um formato (máscara)"
+  },
+  "ComponentManifest": {
+    "AllowAccessToGlobals": false,
+    "AllowCustomization": true,
+    "Description": "Recebe uma entrada de texto com um formato (máscara)",
+    "Name": "MaskedInput",
+    "TemplateGuid": "1a9cacb2663f4e2e85b28d2e483eb95c"
+  },
+  "ComponentType": "CanvasComponent",
+  "CustomGroupControlTemplateName": "",
+  "CustomProperties": [
+    {
+      "Category": 0,
+      "DisplayName": "Mask",
+      "Hidden": false,
+      "Name": "Mask",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "Máscara para formatação",
+      "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Text",
+      "Hidden": true,
+      "Name": "Text",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "Texto formatado",
+      "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    },
+    {
+      "Category": 0,
+      "DisplayName": "Default",
+      "Hidden": false,
+      "Name": "Default",
+      "PropertyDataTypeKey": "String",
+      "Tooltip": "Valor padrão inicial",
+      "Type": "{\"Version\":\"1.341\",\"Type\":{\"Name\":\"Root\",\"Kind\":\"String\",\"EnumString\":\"\",\"Type\":[]}}"
+    }
+  ],
+  "FirstParty": true,
+  "Id": "http://microsoft.com/appmagic/Component",
+  "IsComponentLocked": false,
+  "IsComponentTemplate": true,
+  "IsCustomGroupControlTemplate": false,
+  "IsPcfControl": false,
+  "IsPremiumPcfControl": false,
+  "IsWidgetTemplate": false,
+  "LastModifiedTimestamp": "638523470771680950",
+  "Name": "1a9cacb2663f4e2e85b28d2e483eb95c",
+  "OverridableProperties": {},
+  "Version": "1.0"
+}

@@ -58,7 +58,7 @@
         "NameMapSourceSchema": "?"
       }
     ],
-    "LastModifiedTimestamp": "638523185195762635",
+    "LastModifiedTimestamp": "638523466469624231",
     "Name": "InputHelperFunctions",
     "Rules": [
       {
@@ -137,31 +137,31 @@
         "Category": "Design",
         "InvariantScript": "0",
         "Property": "Height",
-        "RuleProviderType": "System"
+        "RuleProviderType": "Unknown"
       },
       {
         "Category": "Design",
         "InvariantScript": "0",
         "Property": "Width",
-        "RuleProviderType": "System"
+        "RuleProviderType": "Unknown"
       },
       {
         "Category": "Design",
         "InvariantScript": "0",
         "Property": "X",
-        "RuleProviderType": "System"
+        "RuleProviderType": "Unknown"
       },
       {
         "Category": "Design",
         "InvariantScript": "0",
         "Property": "Y",
-        "RuleProviderType": "System"
+        "RuleProviderType": "Unknown"
       },
       {
         "Category": "Design",
         "InvariantScript": "1",
         "Property": "ZIndex",
-        "RuleProviderType": "System"
+        "RuleProviderType": "Unknown"
       }
     ]
   },
@@ -344,7 +344,7 @@
   "IsPcfControl": false,
   "IsPremiumPcfControl": false,
   "IsWidgetTemplate": false,
-  "LastModifiedTimestamp": "638523185195762635",
+  "LastModifiedTimestamp": "638523466469624231",
   "Name": "9537d784898b4faba3170dd2a5039db2",
   "OverridableProperties": {},
   "Version": "1.0"
