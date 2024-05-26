@@ -11,3 +11,6 @@ Métodos:
 - FormataCNPJ(Input:Text):Text
 - ValidaCPF(Input:Text):Boolean
 - ValidaCNPJ(Input:Text):Boolean
+
+Explicação em vídeo: https://www.youtube.com/watch?v=M6APwg2r1ww
+
