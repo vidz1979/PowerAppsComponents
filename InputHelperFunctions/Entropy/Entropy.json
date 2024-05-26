@@ -1,9 +1,7 @@
 {
   "ComponentIndexes": {
     "InputHelperFunctions": 1,
-    "InputHelpers1": 1,
-    "MaskedInput": 2,
-    "MaskedInput_1": 2
+    "InputHelpers1": 1
   },
   "ControlUniqueGuids": {},
   "ControlUniqueIds": {
@@ -26,30 +24,24 @@
     "Label3_2": 10,
     "LabelErroCNPJ": 13,
     "LabelErroCPF": 17,
-    "MaskedInput": 4,
-    "MaskedInput_1": 22,
     "Screen1": 8,
-    "Slider1": 5,
     "SliderCNPJ": 14,
     "SliderCPF": 18,
-    "SliderTelefone": 21,
-    "TextInput1": 6
+    "SliderTelefone": 21
   },
   "FunctionParamsInvariantScripts": {},
   "FunctionParamsInvariantScriptsOnInstances": {},
-  "HeaderLastSavedDateTimeUTC": "05/26/2024 19:43:40",
+  "HeaderLastSavedDateTimeUTC": "05/26/2024 19:44:41",
   "IsLegacyComponentAllowGlobalScopeCase": false,
   "LocalConnectionIDReferences": {},
   "LocalDatabaseReferencesAsEmpty": true,
   "LocalResourceFileNames": {},
   "LocalResourceRootPaths": {},
   "OrderComponentMetadata": {
-    "1a9cacb2663f4e2e85b28d2e483eb95c": 0,
-    "9537d784898b4faba3170dd2a5039db2": 1
+    "9537d784898b4faba3170dd2a5039db2": 0
   },
   "OrderComponentTemplate": {
-    "1a9cacb2663f4e2e85b28d2e483eb95c": 0,
-    "9537d784898b4faba3170dd2a5039db2": 1
+    "9537d784898b4faba3170dd2a5039db2": 0
   },
   "OrderDataSource": {},
   "OrderGroupControls": {
@@ -99,20 +91,16 @@
     "Label3_2": {},
     "LabelErroCNPJ": {},
     "LabelErroCPF": {},
-    "MaskedInput": {},
-    "MaskedInput_1": {},
     "Screen1": {},
-    "Slider1": {},
     "SliderCNPJ": {},
     "SliderCPF": {},
-    "SliderTelefone": {},
-    "TextInput1": {}
+    "SliderTelefone": {}
   },
   "PCFDynamicSchemaForIRRetrievalEntry": {},
   "PCFTemplateEntry": {},
   "PublishOrderIndices": {
     "App": 0,
-    "Button2": 19,
+    "Button2": 18,
     "GroupCNPJ": 3,
     "GroupCPF": 8,
     "GroupTelefone": 13,
@@ -125,19 +113,15 @@
     "Label2": 7,
     "Label2_1": 12,
     "Label2_2": 2,
-    "Label3": 17,
-    "Label3_1": 18,
+    "Label3": 16,
+    "Label3_1": 17,
     "Label3_2": 1,
     "LabelErroCNPJ": 5,
     "LabelErroCPF": 10,
-    "MaskedInput": 0,
-    "MaskedInput_1": 16,
     "Screen1": 0,
-    "Slider1": 21,
     "SliderCNPJ": 6,
     "SliderCPF": 11,
-    "SliderTelefone": 15,
-    "TextInput1": 20
+    "SliderTelefone": 15
   },
   "ResourcesJsonIndices": {},
   "RuleScreenIdWithoutScreen": {},
